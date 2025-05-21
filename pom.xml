@@ -30,7 +30,7 @@
 							<version>3.5.3</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>xml/testng-search.xml</suiteXmlFile>
+									<suiteXmlFile>src/test/resources/xml/testng-search.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>
