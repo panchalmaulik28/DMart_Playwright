@@ -18,6 +18,7 @@ public class ConfigReader {
 	}
 
 	public static String properties(String value) {
-		return prop.getProperty(value);
+		String browser = System.getProperty(value) != null ? System.getProperty(value): prop.getProperty(value);
+		return browser;
 	}
 }

@@ -2,8 +2,9 @@ package tests;
 
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import base.BaseTest;
 import constant.AppConstant;
 import pages.DashboardPage;
@@ -12,18 +13,19 @@ import pages.SearchResultsPage;
 
 public class SearchTest extends BaseTest {
 
-	String productName = "Dry Fruits";
-	String noProduct = "XYZ1";
-
 	DashboardPage dashboardPage;
 	HeaderPage headerPage;
 	SearchResultsPage searchResultsPage;
 
-	@BeforeTest
+	String productName = "Dry Fruits";
+	String noProduct = "XYZ1";
+
+	@BeforeClass
 	public void object() {
-		dashboardPage = new DashboardPage();
-		headerPage = new HeaderPage();
-		searchResultsPage = new SearchResultsPage();
+		dashboardPage = new DashboardPage(page);
+		headerPage = new HeaderPage(page);
+		searchResultsPage = new SearchResultsPage(page);
+		whereShouldWeDeliver();
 	}
 
 	@Test(priority = 0)

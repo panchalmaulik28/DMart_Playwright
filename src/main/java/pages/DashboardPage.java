@@ -1,14 +1,28 @@
 package pages;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 
-import utilities.BrowserManager;
+public class DashboardPage {
 
-public class DashboardPage extends BrowserManager {
-	private Locator searchResultContent = page.locator("//h1[contains(@class,'search-landing_searchHeaderDiv')]/span/b");
-	private Locator searchCount = page.locator("//h1[contains(@class,'search-landing_searchHeaderDiv')]/span");
-	private Locator productCount = page.locator("//div[contains(@class,'search-landing')]/div //div[contains(@class,'vertical-card_card')]");
-	private Locator noProductFound = page.locator("(//div[contains(@class,'notFound-search_container')]/span)[2]");
+	Page page;
+
+	private Locator searchResultContent;
+	private Locator searchCount;
+	private Locator productCount;
+	private Locator noProductFound;
+
+	public DashboardPage(Page page) {
+		this.page = page;
+		initLocator();
+	}
+
+	private void initLocator() {
+		searchResultContent = page.locator("//h1[contains(@class,'search-landing_searchHeaderDiv')]/span/b");
+		searchCount = page.locator("//h1[contains(@class,'search-landing_searchHeaderDiv')]/span");
+		productCount = page.locator("//div[contains(@class,'search-landing')]/div //div[contains(@class,'vertical-card_card')]");
+		noProductFound = page.locator("(//div[contains(@class,'notFound-search_container')]/span)[2]");
+	}
 
 	public String searchResult() {
 		String value = searchResultContent.textContent();

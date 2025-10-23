@@ -1,19 +1,35 @@
 package pages;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
 
-import utilities.BrowserManager;
-
-public class SearchResultsPage extends BrowserManager{
-
-	/*--------filter-------*/
-	private Locator filter_badgeCountList = page.locator("//div[contains(@class,'count-badge')]");
-	private Locator filter_textList = page.locator("//div[contains(@class,'search-sort-filters_filter-container')]/div/p");
-	private Locator filter_DDTextList = page.locator("//div[contains(@class,'filter-sort-modal_filter-options-inner-container')]/label/span[2]/p");
-	private Locator filter_applyBtn = page.locator("//button[contains(@class,'filters-actions-buttons_apply-button')]");
-	private Locator filter_clearAllBtn = page.locator("//button[contains(@class,'filters-actions-buttons_clear-button')]");
+public class SearchResultsPage {
 	
-	//Filter applied logic
+	Page page;
+	BasePage basePage;
+	
+	/*--------filter-------*/
+	private Locator filter_badgeCountList;
+	private Locator filter_textList;
+	private Locator filter_DDTextList;
+	private Locator filter_applyBtn;
+	private Locator filter_clearAllBtn;
+	
+	public SearchResultsPage(Page page) {
+		this.page = page;
+		basePage = new BasePage(page);
+		initLocator();
+	}
+
+	private void initLocator() {
+		filter_badgeCountList = page.locator("//div[contains(@class,'count-badge')]");
+		filter_textList = page.locator("//div[contains(@class,'search-sort-filters_filter-container')]/div/p");
+		filter_DDTextList = page.locator("//div[contains(@class,'filter-sort-modal_filter-options-inner-container')]/label/span[2]/p");
+		filter_applyBtn = page.locator("//button[contains(@class,'filters-actions-buttons_apply-button')]");
+		filter_clearAllBtn = page.locator("//button[contains(@class,'filters-actions-buttons_clear-button')]");
+	}
+
+	// Filter applied logic
 	public void applyFilter(String searchValue, String brandName[]) {
 		if (filter_textList.count() > 0) {
 			for (int i = 0; i <= filter_textList.count() - 1; i++) {
@@ -29,7 +45,7 @@ public class SearchResultsPage extends BrowserManager{
 						}
 					}
 					filter_applyBtn.click();
-					BasePage.waitForLoaderToDisappear();
+					basePage.waitForLoaderToDisappear();
 					break;
 				}
 			}
@@ -37,7 +53,7 @@ public class SearchResultsPage extends BrowserManager{
 			applyFilter(searchValue, brandName);
 		}
 	}
-	
+
 	public Integer getFilterBadgeCount(String filterBy) {
 		int totalFilter = filter_textList.count();
 		String badgeCountTemp = null;
