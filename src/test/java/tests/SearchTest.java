@@ -32,7 +32,7 @@ public class SearchTest extends BaseTest {
 	public void shouldDisplay_NoSearchResultsFound() {
 		headerPage.gloableSearch(noProduct);
 		String value = dashboardPage.getNoProductFound();
-		assertEquals(value, AppConstant.NO_RECORD_FOUND_TXT);
+		assertEquals(value, AppConstant.NO_RECORD_FOUND_TXT + "1");
 	}
 
 	@Test(priority = 1)
