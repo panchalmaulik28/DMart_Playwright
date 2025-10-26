@@ -3,4 +3,6 @@ test-output/Default suite/Default test.xml
 test-output/emailable-report.html
 test-output/index.html
 test-output/junitreports/TEST-tests.SearchTest.xml
+target/
+test-output/
 test-output/testng-results.xml
